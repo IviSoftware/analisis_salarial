@@ -1,5 +1,6 @@
 import { colombia } from "./salarios.js";
 
+// Helpers
 function esPar(numero) {
     return numero % 2 == 0
 }
@@ -30,6 +31,8 @@ function medianaSalarios(lista){
     }
 }
 
+
+//Main
 export function analisis(){
     //creamos un array que solo tenga los salarios
     const salariosCol = colombia.map(function(persona){
@@ -42,7 +45,24 @@ export function analisis(){
         }
     )
     //calculamos la mediana
-    console.log(medianaSalarios(salariosOrden))
+    const medianaGeneralCol = medianaSalarios(salariosOrden);
 
+    //mediana top 10%
+    
+
+    const spliceStart = (salariosOrden.length * 90) / 100;
+    const spliceCount = salariosOrden.length - spliceStart;
+
+
+    //splice recibe 2 parametros, 1 apartir de donde cortar
+    //2 hasta donde o cuantas posciiones
+    const salariosColTop10 = salariosOrden.splice(spliceStart,spliceCount)
+    const medianaTopCol = medianaSalarios(salariosColTop10);
+
+    console.log({
+        medianaGeneralCol,
+        medianaTopCol}
+    )
+    
 
 }
